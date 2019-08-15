@@ -10,11 +10,12 @@ void SetColor(int text, int background)
 }
 
 int main()
-{   
-	int arraySize;
-	cout << ("Choose array size (number of cells)\n");
-	cin >> arraySize;
-	if (arraySize < 1)
+{
+	//для более поздней версии
+	//int arraySize;
+	//cout << ("Choose array size (number of cells)\n");  
+	//cin >> arraySize;
+	/*if (arraySize < 1)
 	{
 		SetColor(4, 0);
 		cout << ("err: Wrong format\n");
@@ -22,8 +23,20 @@ int main()
 		system("pause");
 		return 0;
 	}
-	else 
+	else*/ 
 
+	int arr[10];
+		//переделать под статический массив 
+		srand(time(0));
+		//int *ptrarray= new int [arraySize]; для более поздней версии 
+		for (int count = 0; count < 10; count++)
+		arr[count] = (rand() % 10 + 1) / int((rand() % 10 + 1));
+
+	cout << ("Array size 10\n");
+	SetColor(2,0);
+	cout << ("Array ready\n");
+	SetColor(15,0);
+	system("pause");
 	system("cls");
 
 	int menuNumber ;
@@ -40,13 +53,7 @@ int main()
 	cout << (" Exit\n");
 	SetColor(15, 0);
 	cin >> menuNumber;
-    //проверить 
-	//srand(time(0));
-	//int *ptrarray= new int [arraySize];
-	//for (int count = 0; count < 10000; count++)
-		ptrarray[count] = (rand() % 1000 + 1) / int((rand() % 1000 + 1));
-
-
+    
 	if (menuNumber >= 0)
 	{
 		//
@@ -82,16 +89,17 @@ int main()
 		case 0: 
 
 			return 0;
-		case 22:
-			//проверить 
+			break;
+		case 22://test mode 
+			
 			system("cls");
-			for (int count = 0; count < arraySize; count++)
-				cout << ptrarray[count] << "    \n";
-			delete[] ptrarray; // высвобождение памяти
+			for (int count = 0; count < 10; count++)
+				cout << arr[count] << "    \n";
+			//delete[] ptrarray; // высвобождение памяти(для более поздней версии )
 			system("pause");
 			break;
 
-			break;
+			
 
 
 		default:
@@ -124,7 +132,8 @@ int main()
 //   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
 /*
 22 in menu => test mode
-
+SetColor function description:
+SetColor (text color,background color);
 console colors
         Black         = 0,
 		Blue          = 1,
