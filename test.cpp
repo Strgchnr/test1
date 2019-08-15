@@ -9,6 +9,23 @@ void SetColor(int text, int background)
 	SetConsoleTextAttribute(hStdOut, (WORD)((background << 4) | text));
 }
 
+void BubbleSort(int data[], int lenD)
+{
+	int tmp = 0;
+	for (int i = 0; i < lenD; i++)
+	{
+		for (int j = (lenD - 1); j >= (i + 1); j--)
+		{
+			if (data[j] < data[j - 1])
+			{
+				tmp = data[j];
+				data[j] = data[j - 1];
+				data[j - 1] = tmp;
+			}
+		}
+	}
+}
+
 int main()
 {
 	//для более поздней версии
@@ -26,11 +43,10 @@ int main()
 	else*/ 
 
 	int arr[10];
-		//переделать под статический массив 
 		srand(time(0));
 		//int *ptrarray= new int [arraySize]; для более поздней версии 
 		for (int count = 0; count < 10; count++)
-		arr[count] = (rand() % 10 + 1) / int((rand() % 10 + 1));
+			arr[count] = 0 + rand() % (1000 - 0);
 
 	cout << ("Array size 10\n");
 	SetColor(2,0);
@@ -61,20 +77,13 @@ int main()
 		{
 		case 1:
 			//buble sort 
-		/*	//проверить, настроить 
-		{
-			int tmp = 0;
-			for (int i = 0; i < lenD; i++) {
-				for (int j = (lenD - 1); j >= (i + 1); j--) {
-					if (data[j] < data[j - 1]) {
-						tmp = data[j];
-						data[j] = data[j - 1];
-						data[j - 1] = tmp;
-					}
-				}
-			}
-			cout что-то там, в общем тоже доделать
-		}*/
+			//проверить, настроить 
+		
+			
+			//cout
+		
+
+
 			break;
 
 	    case 2:
@@ -93,9 +102,12 @@ int main()
 		case 22://test mode 
 			
 			system("cls");
+			cout << ("Array contents: \n");
 			for (int count = 0; count < 10; count++)
-				cout << arr[count] << "    \n";
-			//delete[] ptrarray; // высвобождение памяти(для более поздней версии )
+				cout << count << ": " << arr[count] << "    \n";
+			//delete[] ptrarray; // высвобождение памяти(для более поздней версии)
+			cout<<"Rand Max const= "<< RAND_MAX << endl;
+
 			system("pause");
 			break;
 
