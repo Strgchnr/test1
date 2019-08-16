@@ -8,22 +8,28 @@ void SetColor(int text, int background)
 	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hStdOut, (WORD)((background << 4) | text));
 }
-
-void BubbleSort(int data[], int lenD)
+void swap(int* xp, int* yp)
 {
-	int tmp = 0;
-	for (int i = 0; i < lenD; i++)
-	{
-		for (int j = (lenD - 1); j >= (i + 1); j--)
-		{
-			if (data[j] < data[j - 1])
-			{
-				tmp = data[j];
-				data[j] = data[j - 1];
-				data[j - 1] = tmp;
-			}
-		}
-	}
+	int temp = *xp;
+	*xp = *yp;
+	*yp = temp;
+}
+void BubbleSort(int arr[], int n)
+{
+	int i, j;
+	for (i = 0; i < n - 1; i++)
+
+		// Last i elements are already in place  
+		for (j = 0; j < n - i - 1; j++)
+			if (arr[j] > arr[j + 1])
+				swap(&arr[j], &arr[j + 1]);
+}
+void ArrPrint(int arr[], int size)
+{
+	int i;
+	for (i = 0; i < size; i++)
+		cout <<i<<(": ") <<arr[i] << "  \n";
+	cout << endl;
 }
 
 int main()
@@ -41,14 +47,14 @@ int main()
 		return 0;
 	}
 	else*/ 
-
-	int arr[10];
+	const int ArrSize = 100;
+	int arr[ArrSize];
 		srand(time(0));
 		//int *ptrarray= new int [arraySize]; для более поздней версии 
-		for (int count = 0; count < 10; count++)
+		for (int count = 0; count < ArrSize; count++)
 			arr[count] = 0 + rand() % (1000 - 0);
 
-	cout << ("Array size 10\n");
+	cout << ("Array size 100\n");
 	SetColor(2,0);
 	cout << ("Array ready\n");
 	SetColor(15,0);
@@ -76,14 +82,15 @@ int main()
 		switch (menuNumber)
 		{
 		case 1:
-			//buble sort 
-			//проверить, настроить 
-		
-			
+			//bubble sort 
+			system("cls");
+			cout << ("sort started \n");
+			BubbleSort(arr, ArrSize);
+			//добавить проверку на правильность сортировки 
+			cout << ("array was sorted \n");
+			ArrPrint(arr,ArrSize);
+			system("pause");
 			//cout
-		
-
-
 			break;
 
 	    case 2:
@@ -102,9 +109,9 @@ int main()
 		case 22://test mode 
 			
 			system("cls");
+			cout << ("-=test mode=- \n");
 			cout << ("Array contents: \n");
-			for (int count = 0; count < 10; count++)
-				cout << count << ": " << arr[count] << "    \n";
+			ArrPrint(arr,ArrSize);
 			//delete[] ptrarray; // высвобождение памяти(для более поздней версии)
 			cout<<"Rand Max const= "<< RAND_MAX << endl;
 
@@ -143,9 +150,19 @@ int main()
 //   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
 //   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
 /*
-22 in menu => test mode
-SetColor function description:
-SetColor (text color,background color);
+22 in menu start test mode
+>swap function description: 
+This use only in BubbleSort function.
+assigns the value "xp" to "yp" and "yp" to "xp".
+>BubbleSort function description:
+Regular bubble sort. Sorting static array from smaller to larger.
+BubbleSort (array for sorting, size of array);
+>ArrPrint function description:
+Print static array.
+ArrPrint (array for sort, size of array);
+>SetColor function description:
+This function changes colors of text and background in console.
+SetColor (text color, background color);
 console colors
         Black         = 0,
 		Blue          = 1,
