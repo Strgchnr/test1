@@ -65,7 +65,15 @@ void InsertionSort(int arr[], int n)
 		arr[j + 1] = key;
 	}
 }
-
+void WTimePrint(float tp1, float tp2)
+{
+	float t3;
+	t3 = tp2 - tp1;
+	SetColor(14,0);
+	cout << t3 << " ticks \n"
+		<< ((float)t3) / CLOCKS_PER_SEC << " seconds \n";
+	SetColor(15,0);
+}
 
 int main()
 {
@@ -82,14 +90,14 @@ int main()
 		return 0;
 	}
 	else*/ 
-	const int ArrSize = 100;
+	const int ArrSize = 1000;
 	int arr[ArrSize];
 		srand(time(0));
 		//int *ptrarray= new int [arraySize]; для более поздней версии 
 		for (int count = 0; count < ArrSize; count++)
 			arr[count] = 0 + rand() % (1000 - 0);
 
-	cout << ("Array size 100\n");
+	cout << ("Array size ") << ArrSize << "\n" ;
 	SetColor(2,0);
 	cout << ("Array ready\n");
 	SetColor(15,0);
@@ -111,6 +119,7 @@ int main()
 	SetColor(15, 0);
 	cin >> menuNumber;
     
+	float tp1, tp2;
 	if (menuNumber >= 0)
 	{
 		//
@@ -120,35 +129,46 @@ int main()
 			//bubble sort 
 			system("cls");
 			cout << ("sort started \n");
+			tp1 = clock();
 			BubbleSort(arr, ArrSize);
 			//добавить проверку на правильность сортировки 
+			tp2 = clock();
 			cout << ("array was sorted \n");
 			ArrPrint(arr,ArrSize);
+			//tp2 = clock();
+			WTimePrint(tp1,tp2);
 			system("pause");
 			break;
 	    case 2:
 			//selektion sort
 			system("cls");
 			cout << ("sort started \n");
+			tp1 = clock();
 			SelectionSort(arr, ArrSize);
-			//добавить проверку на правильность сортировки 
+			//добавить проверку на правильность сортировки
+			tp2 = clock();
 			cout << ("array was sorted \n");
 			ArrPrint(arr, ArrSize);
+			WTimePrint(tp1,tp2);
 			system("pause");
 			break;
 		case 3:
 			//insertion sort
 			system("cls");
 			cout << ("sort started \n");
+			tp1 = clock();
 			InsertionSort(arr, ArrSize);
-			//добавить проверку на правильность сортировки 
+			//добавить проверку на правильность сортировки
+			tp2 = clock();
 			cout << ("array was sorted \n");
 			ArrPrint(arr, ArrSize);
+			WTimePrint(tp1,tp2);
 			system("pause");
 
 			break;
 		case 4:
-			//merge sort   
+			//merge sort
+			// tupa zalupa
 			break;
 		case 0: 
 
